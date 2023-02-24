@@ -11,8 +11,8 @@ function Default() {
     return (
         <div className={cx('wrapper')}>
             <Header />
+            <Slider />
             <div className={cx('container')}>
-                <Slider />
                 <div className={cx('content')}>
                     <Outlet />
                 </div>
