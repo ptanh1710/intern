@@ -1,12 +1,12 @@
 section.wrapper {
     width: 100%;
     height: 500px;
-    background-color: hsl(0, 0, 55%);
+    // background-color: hsl(0, 0, 55%);
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.2rem;
+    // gap: 0.1rem;
 }
 
 // Css Button Next and Prev
@@ -17,6 +17,7 @@ section.wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: none;
 
     button {
         width: 100%;
@@ -37,4 +38,10 @@ section.wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+    }
 }
