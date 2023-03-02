@@ -1,0 +1,123 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
+    user-select: none;
+    min-height: 100vh;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu {
+    width: 10rem;
+    height: 250px;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.1rem;
+    background-color: hsl(0, 0%, 87%);
+    position: sticky;
+    top: calc(70px + 0.3rem);
+    z-index: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    &-item {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.1rem;
+    }
+
+    &-btn {
+        // width: 100%;
+        height: 100%;
+        padding: 0.5rem;
+        justify-content: flex-start;
+        background-color: transparent;
+    }
+    &-btn + &-btn {
+        margin-left: 0;
+    }
+
+    &-btn.active {
+        background-color: hsl(0, 0%, 97%);
+    }
+}
+
+.content {
+    margin: 0.3rem 0;
+    padding: 0;
+    width: 100%;
+    border-radius: 0.1rem;
+    border: 1px solid hsl(0, 0%, 97%);
+    background-color: hsl(0, 0%, 97%);
+}
+
+.p-row,
+.p-row > .p-col {
+    padding: 0;
+}
+
+.product {
+    padding: 0.3rem;
+}
+
+.product > .card {
+    border: 1px solid hsl(0, 0%, 91%);
+
+    .img {
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    .body {
+        h3 {
+            font-size: 0.6rem;
+            font-weight: 500;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+    }
+}
+
+@media screen and (max-width: 1085px) {
+}
+@media screen and (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .menu {
+        width: 100%;
+        height: 100%;
+
+        &-item {
+            width: 100%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            justify-content: flex-start;
+        }
+
+        &-btn {
+            padding: 0.3rem 0.5rem;
+        }
+        &-btn:hover {
+            text-decoration: underline;
+        }
+    }
+}

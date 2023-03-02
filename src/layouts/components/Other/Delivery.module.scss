@@ -1,0 +1,40 @@
+.delivery {
+    margin: 0.2rem 0;
+    width: 100%;
+
+    .container {
+        width: 100%;
+        // border: 1px solid hsl(0, 0%, 80%);
+        padding: 0.3rem;
+    }
+
+    .content {
+        // margin: 0 auto;
+        padding: 1.2rem 0.5rem;
+        margin: 0.3rem;
+        border: 1px solid hsl(0, 0%, 92%);
+        border-radius: 0.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        user-select: none;
+        gap: 0.3rem;
+
+        svg {
+            padding: 0.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        h3 {
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 0.5rem;
+            font-weight: 500;
+            color: hsl(0, 0%, 63%);
+        }
+    }
+}

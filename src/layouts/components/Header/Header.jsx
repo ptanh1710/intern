@@ -12,7 +12,6 @@ import { Link, NavLink } from 'react-router-dom';
 import style from './Header.module.scss';
 import reactLogo from '../../../assets/react.svg';
 import { default as MyButton } from '../../../components/Button/Button';
-import { warning } from '@remix-run/router';
 
 const cx = classNames.bind(style);
 

@@ -7,6 +7,7 @@ section.wrapper {
     align-items: center;
     justify-content: space-between;
     // gap: 0.1rem;
+    transition: all 0.2s ease-in-out;
 }
 
 // Css Button Next and Prev
@@ -43,5 +44,19 @@ section.wrapper {
         width: 100%;
         height: 100%;
         object-fit: fill;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    section.wrapper {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    section.wrapper {
+        width: 100%;
+        height: 200px;
     }
 }
