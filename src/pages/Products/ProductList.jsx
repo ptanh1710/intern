@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartPlus, faFileLines } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 
 import style from './Products.module.scss';
@@ -28,21 +29,36 @@ function ProductList({ products }) {
     return (
         <CardList className={cx('p-row')}>
             {products.map((product) => (
-                <CardListItem className={cx('p-col')} key={product.id} col4>
+                <CardListItem className={cx('p-col')} key={product.id} col3>
                     <div className={cx('product')}>
                         <div className={cx('card')}>
                             <div className={cx('img')}>
                                 <img src={product.image} alt={product.title} />
                             </div>
                             <div className={cx('body')}>
-                                <h3>{product.title}</h3>
+                                <h3 title={product.title}>{product.title}</h3>
                                 <p>$ {product.price}</p>
+                            </div>
+                            <div className={cx('actions')}>
                                 <MyButton
-                                    onClick={(e) => handleAddToCart(e, product)}
-                                    primary
-                                    large
+                                    className={cx('btn')}
+                                    to={`/product/${product.id}/detail`}
+                                    leftIcon={
+                                        <FontAwesomeIcon icon={faFileLines} />
+                                    }
+                                    success
                                 >
-                                    Add to cart
+                                    Detail
+                                </MyButton>
+                                <MyButton
+                                    className={cx('btn')}
+                                    onClick={(e) => handleAddToCart(e, product)}
+                                    leftIcon={
+                                        <FontAwesomeIcon icon={faCartPlus} />
+                                    }
+                                    primary
+                                >
+                                    Add
                                 </MyButton>
                             </div>
                         </div>

@@ -31,7 +31,7 @@ function Products() {
             <div className={cx('menu')}>
                 <div className={cx('menu-item')}>
                     <MyButton
-                        text={width < 769 ? false : true}
+                        text={width >= 900 ? true : false}
                         className={cx('menu-btn', {
                             active: active === 'all' ? true : false,
                         })}
@@ -41,7 +41,7 @@ function Products() {
                     </MyButton>
                     {categories.map((category) => (
                         <MyButton
-                            text={width < 769 ? false : true}
+                            text={width >= 900 ? true : false}
                             key={category}
                             className={cx('menu-btn', {
                                 active: active === category ? true : false,

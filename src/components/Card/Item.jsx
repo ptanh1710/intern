@@ -7,10 +7,17 @@ import style from './Card.module.scss';
 const cx = classNames.bind(style);
 
 function Item(props) {
-    const { children, col4 = false, col5 = false, className } = props;
+    const {
+        children,
+        col3 = false,
+        col4 = false,
+        col5 = false,
+        className,
+    } = props;
 
     const classes = cx('col', {
         [className]: className,
+        col3,
         col4,
         col5,
     });
@@ -20,6 +27,7 @@ function Item(props) {
 
 Item.propTypes = {
     children: PropTypes.node.isRequired,
+    col3: PropTypes.bool,
     col4: PropTypes.bool,
     col5: PropTypes.bool,
 };
