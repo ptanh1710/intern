@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGratipay } from '@fortawesome/free-brands-svg-icons';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 
 import style from './Detail.module.scss';
 import { productsAPI } from '../../api';
 import { default as MyButton } from '../../components/Button/Button';
+import { toast } from 'react-toastify';
 
 const cx = classNames.bind(style);
 
@@ -16,7 +18,8 @@ function Detail() {
     const [product, setProduct] = useState({});
     const [loading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-
+    const quantityRef = useRef(null);
+    console.log(quantityRef);
     useEffect(() => {
         setIsLoading(true);
         const controller = new AbortController();
@@ -32,6 +35,7 @@ function Detail() {
                 ) {
                     console.log(response.data);
                     setProduct(response.data);
+                    quantityRef.current = 1;
                     setIsLoading(false);
                 }
             } catch (err) {
@@ -49,6 +53,20 @@ function Detail() {
     }, [id]);
 
     const handleSelectFavorite = (e) => {
+        e.preventDefault();
+        toast.info('You was liked the product', {
+            position: 'top-right',
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: 'light',
+        });
+    };
+
+    const handleAddToCart = (e) => {
         e.preventDefault();
     };
 
@@ -87,20 +105,36 @@ function Detail() {
                             </MyButton>
                         </div>
                         <div className={cx('rating')}>
-                            {product.rating.rate}
+                            {product.rating && product.rating.rate}
                         </div>
                         <hr />
                         <div className={cx('info')}>
                             <div className={cx('quantity')}>
-                                <span>Qty</span>
-                                <button>+</button>
-                                <input value="1" type="number" disabled />
-                                <button>-</button>
+                                <p>Qty</p>
+                                <div className={cx('box')}>
+                                    <MyButton
+                                        className={cx('quantity-btn-plus')}
+                                    >
+                                        <FontAwesomeIcon icon={faPlus} />
+                                    </MyButton>
+                                    <input
+                                        name="quantity"
+                                        type="number"
+                                        ref={quantityRef}
+                                    />
+                                    <MyButton
+                                        className={cx('quantity-btn-minus')}
+                                    >
+                                        <FontAwesomeIcon icon={faMinus} />
+                                    </MyButton>
+                                </div>
                             </div>
                             <h3>$ {product.price}</h3>
                         </div>
                         <hr />
-                        <MyButton primary>Buy Now</MyButton>
+                        <MyButton className={cx('btn')} primary>
+                            Buy Now
+                        </MyButton>
                     </div>
                 </div>
             )}
