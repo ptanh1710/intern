@@ -58,7 +58,7 @@
 }
 
 .content {
-    background-color: hsl(0, 0%, 85%);
+    background-color: hsl(0, 0%, 95%);
     width: 100%;
     padding: 0 0.5rem;
 }
@@ -109,6 +109,21 @@
 
 .rating {
     margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    p {
+        margin-right: 0.3rem;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        color: hsl(65, 100%, 50%);
+        border: 1px solid hsl(0, 0%, 13%);
+        background-color: hsl(0, 0%, 100%);
+        border-radius: 50%;
+        font-size: 0.8rem;
+    }
 }
 
 .info {
@@ -151,12 +166,12 @@
             }
         }
 
-        &-btn-plus {
+        &-btn-minus {
             border-top-left-radius: 20px;
             border-bottom-left-radius: 20px;
         }
 
-        &-btn-minus {
+        &-btn-plus {
             border-top-right-radius: 20px;
             border-bottom-right-radius: 20px;
         }

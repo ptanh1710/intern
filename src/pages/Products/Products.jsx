@@ -1,30 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames/bind';
 
 import style from './Products.module.scss';
 import { default as MyButton } from '../../components/Button/Button';
-import useWindowSize from '../../hooks/useWindowSize';
+import { useShopContext, useWindowSize } from '../../hooks';
 import ProductList from './ProductList';
-import { PRODUCTS } from './mockData';
 
 const cx = classNames.bind(style);
 
-const categories = [
-    'electronics',
-    'jewelery',
-    "men's clothing",
-    "women's clothing",
-];
-
 function Products() {
     // 1 cách khắc phục tạm thời trong thời điểm hiện tại
-    const { width, height } = useWindowSize();
+    const { width } = useWindowSize();
+    const { getProducts, products, categories, loading } = useShopContext();
 
-    const [active, setActive] = useState('all');
+    const [filteredCategory, setFilteredCategory] = useState('all');
+
     const handleSelectedCategory = (e) => {
+        let titleCategory = e.target.innerText.toLowerCase();
         e.preventDefault();
-        setActive(e.target.innerText.toLowerCase());
+        setFilteredCategory(titleCategory);
     };
+
+    const renderFilterProducts = useMemo(() => {
+        const result = products.filter(
+            (product) =>
+                filteredCategory === 'all' ||
+                filteredCategory === product.category,
+        );
+        return result;
+    }, [filteredCategory, products]);
+
+    useEffect(() => {
+        getProducts();
+    }, []);
 
     return (
         <section className={cx('wrapper')}>
@@ -33,7 +41,7 @@ function Products() {
                     <MyButton
                         text={width >= 900 ? true : false}
                         className={cx('menu-btn', {
-                            active: active === 'all' ? true : false,
+                            active: filteredCategory === 'all' ? true : false,
                         })}
                         onClick={(e) => handleSelectedCategory(e)}
                     >
@@ -42,19 +50,23 @@ function Products() {
                     {categories.map((category) => (
                         <MyButton
                             text={width >= 900 ? true : false}
-                            key={category}
+                            key={category.id}
                             className={cx('menu-btn', {
-                                active: active === category ? true : false,
+                                active:
+                                    filteredCategory === category.title
+                                        ? true
+                                        : false,
                             })}
                             onClick={(e) => handleSelectedCategory(e)}
                         >
-                            {category}
+                            {category.title}
                         </MyButton>
                     ))}
                 </div>
             </div>
             <div className={cx('content')}>
-                <ProductList products={PRODUCTS} />
+                {loading && <h1>Loading...</h1>}
+                {!loading && <ProductList products={renderFilterProducts} />}
             </div>
         </section>
     );

@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGratipay } from '@fortawesome/free-brands-svg-icons';
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus, faStar } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 
 import style from './Detail.module.scss';
@@ -18,8 +18,8 @@ function Detail() {
     const [product, setProduct] = useState({});
     const [loading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-    const quantityRef = useRef(null);
-    console.log(quantityRef);
+    const [quantity, setQuantity] = useState(1);
+
     useEffect(() => {
         setIsLoading(true);
         const controller = new AbortController();
@@ -33,9 +33,7 @@ function Detail() {
                     response.status === 200 ||
                     response.data.status === 'success'
                 ) {
-                    console.log(response.data);
                     setProduct(response.data);
-                    quantityRef.current = 1;
                     setIsLoading(false);
                 }
             } catch (err) {
@@ -105,6 +103,9 @@ function Detail() {
                             </MyButton>
                         </div>
                         <div className={cx('rating')}>
+                            <p>
+                                <FontAwesomeIcon icon={faStar} />
+                            </p>
                             {product.rating && product.rating.rate}
                         </div>
                         <hr />
@@ -113,26 +114,31 @@ function Detail() {
                                 <p>Qty</p>
                                 <div className={cx('box')}>
                                     <MyButton
-                                        className={cx('quantity-btn-plus')}
+                                        className={cx('quantity-btn-minus')}
                                     >
-                                        <FontAwesomeIcon icon={faPlus} />
+                                        <FontAwesomeIcon icon={faMinus} />
                                     </MyButton>
                                     <input
                                         name="quantity"
                                         type="number"
-                                        ref={quantityRef}
+                                        value={quantity}
+                                        onChange={() => {}}
                                     />
                                     <MyButton
-                                        className={cx('quantity-btn-minus')}
+                                        className={cx('quantity-btn-plus')}
                                     >
-                                        <FontAwesomeIcon icon={faMinus} />
+                                        <FontAwesomeIcon icon={faPlus} />
                                     </MyButton>
                                 </div>
                             </div>
                             <h3>$ {product.price}</h3>
                         </div>
                         <hr />
-                        <MyButton className={cx('btn')} primary>
+                        <MyButton
+                            className={cx('btn')}
+                            primary
+                            onClick={handleAddToCart}
+                        >
                             Buy Now
                         </MyButton>
                     </div>

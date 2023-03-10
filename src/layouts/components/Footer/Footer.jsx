@@ -58,7 +58,10 @@ function Footer() {
             <div className={cx('design')}>
                 <p>&copy; Design By Anh Phạm - 03/2023</p>
                 <div className={cx('design-icon')}>
-                    <a href="https://www.facebook.com/" target="_blank">
+                    <a
+                        href="https://www.facebook.com/TuanAnhPPP"
+                        target="_blank"
+                    >
                         <FontAwesomeIcon icon={faFacebook} />
                     </a>
                     <a href="https://www.google.com/" target="_blank">
@@ -67,7 +70,10 @@ function Footer() {
                     <a href="https://www.linkedin.com/" target="_blank">
                         <FontAwesomeIcon icon={faLinkedin} />
                     </a>
-                    <a href="https://github.com/" target="_blank">
+                    <a
+                        href="https://github.com/ptanh1710/intern"
+                        target="_blank"
+                    >
                         <FontAwesomeIcon icon={faGithub} />
                     </a>
                 </div>
